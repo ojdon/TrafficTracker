@@ -1,6 +1,6 @@
-# traffictracker
+# TrafficTracker
 
-> Track the latest traffic news around the UK using the open Highway Agency API
+Quickly browse through current travel news and upcoming roadworks throughout the UK's highways/motorways and A roads. This is a simple vuejs app that hooks into the open Highways England API. 
 
 ## Build Setup
 
