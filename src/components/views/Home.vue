@@ -1,8 +1,15 @@
 <template>
   <section class="home">
     <b-container>
-      <router-link to="accidents">Accidents</router-link>
-      <router-link to="roadworks">Roadworks</router-link>
+      <b-row>
+        <b-col>
+          <router-link to="accidents" class="btn btn-primary btn-lg btn-block">Accidents</router-link>
+        </b-col>
+        <b-col>
+          <router-link to="roadworks" class="btn btn-primary btn-lg btn-block">Roadworks</router-link>
+        </b-col>
+      </b-row>
+
     </b-container>
   </section>
 </template>
