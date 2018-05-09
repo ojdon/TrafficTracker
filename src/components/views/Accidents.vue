@@ -1,10 +1,12 @@
 <template>
   <section class="accidents">
     <b-container>
-      <b-list-group>
-        <b-list-group-item v-for="post in posts" :key="post.guid" class="text-capitalize"><h2>{{post.title}}</h2><p v-html="post.description" style="white-space: pre;"></p></b-list-group-item>
-      </b-list-group>
-
+        <div v-for="report in reports" :key="report.guid" class="text-capitalize">
+          <hr>
+          <h2>{{report.title}}</h2>
+          <b-badge v-html="report.pubDate"></b-badge>
+          <p v-html="report.description" class="description" style="white-space: pre-wrap; word-wrap: break-word;"></p>
+        </div>
     </b-container>
   </section>
 </template>
@@ -15,17 +17,18 @@ export default {
   name: 'accidents',
   data() {
     return {
-      posts: [],
+      reports: [],
       errors: []
     }
   },
-  created() {
+  mounted() {
     
 
     axios.get('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://m.highways.gov.uk/feeds/rss/UnplannedEvents.xml'))
     .then(response => {
       // JSON responses are automatically parsed.
-      this.posts = response.data.items;
+      this.reports = response.data.items;
+      console.log(response.data);
     })
     .catch(e => {
       this.errors.push(e)
