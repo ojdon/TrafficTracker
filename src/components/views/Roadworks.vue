@@ -1,7 +1,7 @@
 <template>
   <section class="roadworks">
     <b-container>
-        <div v-for="report in reports" :key="report.guid" class="text-capitalize">
+        <div v-for="report in reports" :key="report.guid._data" class="text-capitalize">
           <hr>
           <h2>{{report.title}}</h2>
           <b-badge v-html="report.pubDate"></b-badge>
@@ -12,6 +12,7 @@
 </template>
 <script>
 import axios from 'axios';
+import XML from 'pixl-xml';
 
 export default {
   name: 'roadworks',
@@ -24,10 +25,10 @@ export default {
   created() {
     
 
-    axios.get('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://m.highways.gov.uk/feeds/rss/CurrentAndFutureEvents.xml'))
+    axios.get('https://m.highways.gov.uk/feeds/rss/CurrentAndFutureEvents.xml')
     .then(response => {
-      // JSON responses are automatically parsed.
-      this.reports = response.data.items;
+      this.reports = XML.parse(response.data);
+      this.reports = this.reports.channel.item;
     })
     .catch(e => {
       this.errors.push(e)
