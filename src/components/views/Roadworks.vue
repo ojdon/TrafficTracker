@@ -25,7 +25,7 @@ export default {
   created() {
     
 
-    axios.get('https://m.highways.gov.uk/feeds/rss/CurrentAndFutureEvents.xml')
+    axios.get('https://m.highwaysengland.co.uk/feeds/rss/CurrentAndFutureEvents.xml')
     .then(response => {
       this.reports = XML.parse(response.data);
       this.reports = this.reports.channel.item;

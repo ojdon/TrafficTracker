@@ -23,7 +23,7 @@ export default {
     }
   },
 mounted() {
-    axios.get('https://m.highways.gov.uk/feeds/rss/UnplannedEvents.xml')
+    axios.get('https://m.highwaysengland.co.uk/feeds/rss/UnplannedEvents.xml')
     .then(response => {
       this.reports = XML.parse(response.data);
       this.reports = this.reports.channel.item;
